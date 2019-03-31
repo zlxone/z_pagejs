@@ -1,0 +1,49 @@
+.z_page {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.z_page > div, .z_page > ul {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.z_page > ul {
+    margin: 0 10px;
+}
+
+.z_page > div {
+    width: 65px;
+    height: 25px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(238, 238, 238, 1);
+    border-radius: 4px;
+    text-align: center;
+    line-height: 25px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #069789;
+}
+
+.z_page li {
+    display: inline-block;
+    font-size: 12px;
+    color: #069789;
+    cursor: pointer;
+    padding: 0 8px;
+    height: 25px;
+    min-width: 25px;
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(238, 238, 238, 1);
+    border-radius: 4px;
+    vertical-align: top;
+    line-height: 25px;
+    margin: 0 2px;
+}
+
+.z_page .z_page_active {
+    border: 1px solid rgba(6, 151, 137, 1);
+    background: rgba(239, 255, 253, 1);
+}
