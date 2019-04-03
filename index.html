@@ -4,49 +4,95 @@
     <title>z_pages</title>
     <meta charset="UTF-8">
     <!--<meta name="viewport"-->
-          <!--content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>-->
+    <!--content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>-->
     <link rel="stylesheet" type="text/css" href="css/base.css"/>
     <link rel="stylesheet" type="text/css" href="css/z_pages.css"/>
 </head>
 <body>
-<div id="z_pmdwrap">
-    <div id="z_mpdfirst">
-        曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。
-        如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。
-        如果非要在这份爱上加上一个期限，我希望是……
-        一万年
+<div class="z_container">
+    <!--// 跑马灯-->
+    <div class="z_pmdwrap">
+        <div class="z_mpdfirst">
+            曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。
+            如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。
+            如果非要在这份爱上加上一个期限，我希望是……
+            一万年
+        </div>
+        <div>
+            曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。
+            如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。
+            如果非要在这份爱上加上一个期限，我希望是……
+            一万年
+        </div>
     </div>
+
+    <!--//选择框-->
+    <div class="z_select">
+        <span>请选择</span>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+
+    <!--//实现倒计时60秒-->
     <div>
-        曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。
-        如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。
-        如果非要在这份爱上加上一个期限，我希望是……
-        一万年
+        <input type="button" id="z_yzmbtn" value="免费获取验证码"/>
     </div>
-</div>
 
-<div id="z_page" class="z_page">
-    <div id="zlpage"><img src="images/zlpage.png"> 上一页</div>
-    <ul class="z_num">
-        <li class="z_page_active">
-            1
-        </li>
-        <li>
-            2
-        </li>
-        <li>
-            3
-        </li>
-        <li>
-            4
-        </li>
-        <li>
-            5
-        </li>
-    </ul>
-    <div id="zrpage"> 下一页 <img src="images/zrpage.png"></div>
-</div>
+    <!--//上传图片并预览-->
+    <div>
+        <img class="z_imgshow" src="">
+        <input type="file" class="z_upfile">
+        <span class="z_upimgbtn">上传图片</span>
+    </div>
 
+    <!--//到顶部-->
+    <div class="z_gotop">到顶部</div>
+
+    <!--// 分页-->
+    <div class="z_page">
+        <div class="z_prev"><img src="images/zlpage.png"> 上一页</div>
+        <ul class="z_num">
+            <li class="z_page_active">
+                1
+            </li>
+            <li>
+                2
+            </li>
+            <li>
+                3
+            </li>
+            <li>
+                4
+            </li>
+            <li>
+                5
+            </li>
+            <li>
+                ...
+            </li>
+            <li>
+                10
+            </li>
+        </ul>
+        <div class="z_next"> 下一页 <img src="images/zrpage.png"></div>
+        <div class="z_gonum">
+            跳<input type="number" min="1" value="1">页<button>确定</button>
+        </div>
+    </div>
+
+
+
+</div>
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/z_pages.js"></script>
+
 </body>
 </html>

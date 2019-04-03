@@ -1,9 +1,21 @@
+.z_container {
+    width: 600px;
+    margin: 0 auto;
+    background-color: #e9e9e9;
+    padding: 20px;
+}
+
+.z_container > div {
+    margin: 30px 0;
+}
+
+.disable {
+    pointer-events: none;
+}
+
 /*分页*/
 .z_page {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    width: 100%;
-    text-align: center;
+    margin: 50px 0;
 }
 
 .z_page > div, .z_page > ul {
@@ -15,71 +27,151 @@
     margin: 0 10px;
 }
 
-.z_page > div {
-    width: 65px;
-    height: 25px;
-    background: rgba(255, 255, 255, 1);
-    border: 1px solid rgba(238, 238, 238, 1);
+.z_page .z_prev, .z_page .z_next {
+    padding: 4px 8px;
+    background: #F8F8F9;
+    border: 1px solid #F8F8F9;
     border-radius: 4px;
-    text-align: center;
-    line-height: 25px;
     cursor: pointer;
     font-size: 12px;
-    color: #069789;
+    color: #666666;
 }
 
 .z_page li {
     display: inline-block;
     font-size: 12px;
-    color: #069789;
+    color: #666666;
     cursor: pointer;
-    padding: 0 8px;
-    height: 25px;
-    min-width: 25px;
-    background: rgba(255, 255, 255, 1);
-    border: 1px solid rgba(238, 238, 238, 1);
+    padding: 4px 8px;
+    min-width: 30px;
+    text-align: center;
+    background: #F8F8F9;
+    border: 1px solid #F8F8F9;
     border-radius: 4px;
     vertical-align: top;
-    line-height: 25px;
     margin: 0 2px;
 }
 
 .z_page .z_page_active {
-    border: 1px solid rgba(6, 151, 137, 1);
-    background: rgba(239, 255, 253, 1);
+    border: 1px solid #2575F4;
+    background: #2575F4;
+    color: white;
+}
+
+.z_gonum {
+    vertical-align: top;
+    margin-left: 30px;
+    font-size: 12px;
+    color: #666666;
+}
+
+.z_gonum input {
+    width: 50px;
+    height: 27px;
+    background: #F8F8F9;
+    border: none;
+    text-align: center;
+    margin: 0 6px;
+}
+
+.z_gonum button {
+    font-size: 12px;
+    color: white;
+    background: #2575F4;
+    padding: 0 8px;
+    height: 27px;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: top;
 }
 
 /*跑马灯*/
-#z_pmdwrap {
-    width: 500px;
-    margin: 0 auto;
+.z_pmdwrap {
+    width: 100%;
     white-space: nowrap;
     overflow: hidden;
+    background: yellow;
 }
 
-#z_pmdwrap div {
+.z_pmdwrap div {
     display: inline-block;
     font-size: 20px;
     color: #999;
+    cursor: pointer;
 }
 
+/*下拉框*/
+.z_select {
+    width: 280px;
+}
 
+.z_select span {
+    width: 100%;
+    height: 30px;
+    display: block;
+    border: 1px solid #999;
+    margin: 0 auto;
+    color: #c0c0c0;
+    font-size: 16px;
+    padding-left: 10px;
+    line-height: 30px;
+    cursor: pointer;
+    background: white url("../images/dropdown_n.png") no-repeat right 10px top 2px;
+    background-size: 18px 18px;
+}
 
+.z_select ul {
+    display: none;
+    width: 100%;
+    border: 1px solid #999;
+    border-top: none;
+    max-height: 120px;
+    overflow-y: scroll;
+    background: white;
+}
 
+.z_select li {
+    width: 100%;
+    height: 30px;
+    padding: 0 10px;
+    line-height: 30px;
+    color: #999;
+    font-size: 16px;
+    cursor: pointer;
+}
 
+.z_select li:hover {
+    background: #4ebbf0;
+    color: #fff;
+}
 
+/*到顶部*/
+.z_gotop {
+    font-size: 14px;
+    cursor: pointer;
+}
 
+/*实现倒计时60秒*/
+.z_yzmbtn {
+    padding: 0 10px;
+    height: 30px;
+    text-align: center;
+    font-size: 14px;
+}
 
+/*上传图片并展示*/
+.z_upfile {
+    display: none;
+}
 
+.z_upimgbtn {
+    font-size: 16px;
+    cursor: pointer;
+}
 
-
-
-
-
-
-
-
-
-
+/*验证码按钮*/
+#z_yzmbtn {
+    cursor: pointer;
+}
 
 

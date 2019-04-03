@@ -3,73 +3,159 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>跑马灯效果</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css"/>
+
     <style type="text/css">
-        * {
-            margin: 0;
-            padding: 0;
-            font-size: 16px;
+        .disable {
+            pointer-events: none;
         }
 
-        #wrap {
-            width: 1000px;
-            margin: 20px auto;
-            border: 2px solid green;
-            white-space: nowrap;
-            overflow: hidden;
-            padding: 10px;
-            color: rgb(110, 244, 216);
-            background: #1c1c51;
+        .z_page {
+            margin: 50px 0;
         }
 
-        #wrap div {
+        .z_page > div, .z_page > ul {
             display: inline-block;
-            font-size: 20px;
+            vertical-align: top;
         }
 
-        #wrap span {
-            font-size: 20px;
-            color: red;
+        .z_page > ul {
+            margin: 0 10px;
         }
 
+        .z_page .z_prev, .z_page .z_next {
+            padding: 4px 8px;
+            background: #F8F8F9;
+            border: 1px solid #F8F8F9;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            color: #666666;
+        }
+
+        .z_page li {
+            display: inline-block;
+            font-size: 12px;
+            color: #666666;
+            cursor: pointer;
+            padding: 4px 8px;
+            min-width: 30px;
+            text-align: center;
+            background: #F8F8F9;
+            border: 1px solid #F8F8F9;
+            border-radius: 4px;
+            vertical-align: top;
+            margin: 0 2px;
+        }
+
+        .z_page .z_page_active {
+            border: 1px solid #2575F4;
+            background: #2575F4;
+            color: white;
+        }
+
+        .z_gonum {
+            vertical-align: top;
+            margin-left: 30px;
+            font-size: 12px;
+            color: #666666;
+        }
+
+        .z_gonum input {
+            width: 50px;
+            height: 27px;
+            background: #F8F8F9;
+            border: none;
+            text-align: center;
+            margin: 0 6px;
+        }
+
+        .z_gonum button {
+            font-size: 12px;
+            color: white;
+            background: #2575F4;
+            padding: 0 8px;
+            height: 27px;
+            display: inline-block;
+            margin-left: 10px;
+            vertical-align: top;
+        }
 
     </style>
 </head>
 <body>
-<div id="wrap">
-    <div id="first">
-        <span>周星驰</span>曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。
-        如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。
-        如果非要在这份爱上加上一个期限，我希望是……
-        一万年
-    </div>
-    <div id="last">
-        <span>周星驰</span>曾经有一份真诚的爱情放在我面前，我没有珍惜，等我失去的时候我才后悔莫及，人世间最痛苦的事莫过于此。
-        如果上天能够给我一个再来一次的机会，我会对那个女孩子说三个字：我爱你。
-        如果非要在这份爱上加上一个期限，我希望是……
-        一万年
+<div class="z_page">
+    <div class="z_prev"><img src="images/zlpage.png"> 上一页</div>
+    <ul class="z_num">
+        <li class="z_page_active">
+            1
+        </li>
+        <li>
+            2
+        </li>
+        <li>
+            3
+        </li>
+        <li>
+            ...
+        </li>
+        <li>
+            18
+        </li>
+        <li>
+            19
+        </li>
+        <li>
+            20
+        </li>
+    </ul>
+    <div class="z_next"> 下一页 <img src="images/zrpage.png"></div>
+    <div class="z_gonum">
+        跳<input type="number" min="1" value="1">页
+        <button>确定</button>
     </div>
 </div>
 
-
+<script src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
 
-    (function () {
-        var wrap = document.getElementById('wrap'), first = document.getElementById('first');
-        var timer = window.setInterval(move, 5);
-        wrap.onmouseover = function () {
-            window.clearInterval(timer);
-        };
-        wrap.onmouseout = function () {
-            timer = window.setInterval(move, 5);
-        };
-        function move() {
-            wrap.scrollLeft++;
-            if (wrap.scrollLeft >= first.scrollWidth) {
-                wrap.scrollLeft = 0;
-            }
-        }
-    })();
 
+    $(".z_page .z_prev").click(function () {
+        $(this).next().children(".z_page_active").prev().addClass('z_page_active').siblings().removeClass('z_page_active')
+        if ($(this).next().children(".z_page_active").prev()[0].innerText == '...') {
+            console.log('798')
+
+        }
+
+
+        // console.log($(this).next().children(".z_page_active")[0].innerText)
+        // if($(this).next().children(".z_page_active")[0].innerText==1){
+        //     $(this).addClass("disable");
+        // }else {
+        //     if ($(this).next().children(".z_page_active").prev()[0].innerText == '...') {
+        //         console.log('798')
+        //     }
+        // }
+
+    })
+    $(".z_page .z_next").click(function () {
+        $(this).prev().children(".z_page_active").next().addClass('z_page_active').siblings().removeClass('z_page_active')
+        // console.log($(this).prev().children(".z_page_active")[0].innerText)
+        // console.log($(this).prev().children(".z_page_active").next()[0].innerText)
+        if ($(this).prev().children(".z_page_active").next()[0].innerText == '...') {
+            console.log('1321')
+        }
+    })
+
+    $(".z_gonum button").click(function () {
+        // $(this).prev().children(".z_page_active").next().addClass('z_page_active').siblings().removeClass('z_page_active')
+        console.log($(this).siblings('input')[0].value)
+    })
+    $(".z_page li").click(function () {
+        $(this).siblings().removeClass('z_page_active')
+        $(this).addClass('z_page_active')
+        console.log(this.innerText)
+    })
 </script>
 </body>
 </html>
