@@ -96,7 +96,7 @@
         <li>
             3
         </li>
-        <li>
+        <li class="z_page_more">
             ...
         </li>
         <li>
@@ -118,12 +118,11 @@
 
 <script src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
-
-
     $(".z_page .z_prev").click(function () {
         $(this).next().children(".z_page_active").prev().addClass('z_page_active').siblings().removeClass('z_page_active')
         if ($(this).next().children(".z_page_active").prev()[0].innerText == '...') {
-            console.log('798')
+            console.log($(this).next().children(".z_page_active")[0].innerHTML)
+            $(this).next().children(".z_page_active")[0].innerHTML = --$(this).next().children(".z_page_active")[0].innerHTML
 
         }
 

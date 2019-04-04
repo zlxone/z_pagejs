@@ -34,8 +34,8 @@
             fr.readAsDataURL(obj);
             fr.onload = function () {
                 html = '<img src="' + this.result + '">'
-                // $(".z_imgshow").append(html)
-                $(".z_imgshow").attr('src', this.result);
+                // $("#z_imgshow").append(html)
+                $("#z_imgshow").attr('src', this.result);
             };
         })
 
