@@ -100,7 +100,7 @@
             ...
         </li>
         <li>
-            18
+            6
         </li>
         <li>
             19
@@ -119,41 +119,63 @@
 <script src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
     $(".z_page .z_prev").click(function () {
-        $(this).next().children(".z_page_active").prev().addClass('z_page_active').siblings().removeClass('z_page_active')
-        if ($(this).next().children(".z_page_active").prev()[0].innerText == '...') {
-            console.log($(this).next().children(".z_page_active")[0].innerHTML)
-            $(this).next().children(".z_page_active")[0].innerHTML = --$(this).next().children(".z_page_active")[0].innerHTML
-
+        $(this).siblings('.z_num').children('li:first-child').next().next()[0].innerText = 3
+        if ($(this).siblings('.z_num').children(".z_page_active").prev()[0].innerText == '...') {
+            // console.log($(this).siblings('.z_num').children('li:nth-child(1)')[0].innerText)
+            if ($(this).siblings('.z_num').children(".z_page_active")[0].innerText == '4') {
+                $(this).siblings('.z_num').children(".z_page_active").prev().prev().addClass('z_page_active').siblings().removeClass('z_page_active')
+            } else {
+                $(this).siblings('.z_num').children(".z_page_active")[0].innerText = --$(this).siblings('.z_num').children(".z_page_active")[0].innerText
+            }
+        } else {
+            $(this).siblings('.z_num').children(".z_page_active").prev().addClass('z_page_active').siblings().removeClass('z_page_active')
         }
-
-
-        // console.log($(this).next().children(".z_page_active")[0].innerText)
-        // if($(this).next().children(".z_page_active")[0].innerText==1){
-        //     $(this).addClass("disable");
-        // }else {
-        //     if ($(this).next().children(".z_page_active").prev()[0].innerText == '...') {
-        //         console.log('798')
-        //     }
-        // }
-
     })
+
     $(".z_page .z_next").click(function () {
-        $(this).prev().children(".z_page_active").next().addClass('z_page_active').siblings().removeClass('z_page_active')
-        // console.log($(this).prev().children(".z_page_active")[0].innerText)
-        // console.log($(this).prev().children(".z_page_active").next()[0].innerText)
-        if ($(this).prev().children(".z_page_active").next()[0].innerText == '...') {
-            console.log('1321')
+        $(this).siblings('.z_num').children('li:last-child').prev().prev()[0].innerText = $(this).siblings('.z_num').children('li:last-child')[0].innerText - 2
+        if ($(this).siblings('.z_num').children(".z_page_active").next()[0].innerText == '...') {
+            if ($(this).siblings('.z_num').children(".z_page_active")[0].innerText == $(this).siblings('.z_num').children('li:last-child')[0].innerText - 3) {
+                $(this).siblings('.z_num').children(".z_page_active").next().next().addClass('z_page_active').siblings().removeClass('z_page_active')
+            } else {
+                $(this).siblings('.z_num').children(".z_page_active")[0].innerText = ++$(this).siblings('.z_num').children(".z_page_active")[0].innerText
+            }
+        } else {
+            $(this).siblings('.z_num').children(".z_page_active").next().addClass('z_page_active').siblings().removeClass('z_page_active')
         }
     })
 
     $(".z_gonum button").click(function () {
-        // $(this).prev().children(".z_page_active").next().addClass('z_page_active').siblings().removeClass('z_page_active')
         console.log($(this).siblings('input')[0].value)
+        if (
+            $(this).siblings('input')[0].value < $(this).parent().siblings('.z_num').children('li:last-child')[0].innerText - 2 && $(this).siblings('input')[0].value > $(this).parent().siblings('.z_num').children('li:first-child')[0].innerText + 1
+        ) {
+            $(this).parent().siblings('.z_num').children('li:first-child').next().next()[0].innerText = $(this).siblings('input')[0].value
+            $(this).parent().siblings('.z_num').children('li:first-child').next().next().addClass('z_page_active').siblings().removeClass('z_page_active')
+        } else if (
+            $(this).siblings('input')[0].value < $(this).parent().siblings('.z_num').children('li:last-child')[0].innerText - 1 && $(this).siblings('input')[0].value > $(this).parent().siblings('.z_num').children('li:first-child')[0].innerText + 2
+        ) {
+            $(this).parent().siblings('.z_num').children('li:last-child').prev().prev()[0].innerText = $(this).siblings('input')[0].value
+            $(this).parent().siblings('.z_num').children('li:last-child').prev().prev().addClass('z_page_active').siblings().removeClass('z_page_active')
+        } else {
+            console.log('0000')
+            // for () {
+            //     if () {
+            //
+            //     }
+            // }
+
+        }
     })
+
     $(".z_page li").click(function () {
-        $(this).siblings().removeClass('z_page_active')
-        $(this).addClass('z_page_active')
-        console.log(this.innerText)
+        if (this.innerText == '...') {
+            return false
+        } else {
+            $(this).siblings().removeClass('z_page_active')
+            $(this).addClass('z_page_active')
+            console.log(this.innerText)
+        }
     })
 </script>
 </body>
