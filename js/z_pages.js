@@ -3,20 +3,79 @@
     function () {
         // 分页
         $(".z_page .z_prev").click(function () {
-            $(this).next().children(".z_page_active").prev().addClass('z_page_active').siblings().removeClass('z_page_active')
-            console.log($(this).next().children(".z_page_active")[0].innerText)
+            console.log($(this).siblings('.z_num').children(".z_page_active")[0].innerText)
+            if ($(this).siblings('.z_num').children(".z_page_active").prev()[0].innerText == '...') {
+                $(this).siblings('.z_num').children('li:first-child').next().next()[0].innerText = 3
+                if ($(this).siblings('.z_num').children(".z_page_active")[0].innerText == '4') {
+                    $(this).siblings('.z_num').children(".z_page_active").prev().prev().addClass('z_page_active').siblings().removeClass('z_page_active')
+                } else {
+                    $(this).siblings('.z_num').children(".z_page_active")[0].innerText = --$(this).siblings('.z_num').children(".z_page_active")[0].innerText
+                }
+            } else {
+                if ($(this).siblings('.z_num').children(".z_page_active")[0].innerText > 3 &&
+                    $(this).siblings('.z_num').children(".z_page_active")[0].innerText < $(this).siblings('.z_num').children('li:last-child')[0].innerText - 2) {
+                    $(this).siblings('.z_num').children(".z_page_active")[0].innerText = --$(this).siblings('.z_num').children(".z_page_active")[0].innerText
+                } else {
+                    if ($(this).siblings('.z_num').children(".z_page_active")[0].innerText > $(this).siblings('.z_num').children('li:last-child')[0].innerText - 2) {
+                        $(this).siblings('.z_num').children(".z_page_active").prev().addClass('z_page_active').siblings().removeClass('z_page_active')
+                        $(this).siblings('.z_num').children('li:last-child').prev().prev()[0].innerText = $(this).siblings('.z_num').children('li:last-child')[0].innerText - 2
+                    } else {
+                        $(this).siblings('.z_num').children(".z_page_active").prev().addClass('z_page_active').siblings().removeClass('z_page_active')
+                    }
+                }
+            }
         })
         $(".z_page .z_next").click(function () {
-            $(this).prev().children(".z_page_active").next().addClass('z_page_active').siblings().removeClass('z_page_active')
-            console.log($(this).prev().children(".z_page_active")[0].innerText)
+            console.log($(this).siblings('.z_num').children(".z_page_active")[0].innerText)
+            if ($(this).siblings('.z_num').children(".z_page_active").next()[0].innerText == '...') {
+                $(this).siblings('.z_num').children('li:last-child').prev().prev()[0].innerText = $(this).siblings('.z_num').children('li:last-child')[0].innerText - 2
+                if ($(this).siblings('.z_num').children(".z_page_active")[0].innerText == $(this).siblings('.z_num').children('li:last-child')[0].innerText - 3) {
+                    $(this).siblings('.z_num').children(".z_page_active").next().next().addClass('z_page_active').siblings().removeClass('z_page_active')
+                } else {
+                    $(this).siblings('.z_num').children(".z_page_active")[0].innerText = ++$(this).siblings('.z_num').children(".z_page_active")[0].innerText
+                }
+            } else {
+                if ($(this).siblings('.z_num').children(".z_page_active")[0].innerText > 2 &&
+                    $(this).siblings('.z_num').children(".z_page_active")[0].innerText < $(this).siblings('.z_num').children('li:last-child')[0].innerText - 2) {
+                    $(this).siblings('.z_num').children(".z_page_active")[0].innerText = ++$(this).siblings('.z_num').children(".z_page_active")[0].innerText
+                } else {
+                    if ($(this).siblings('.z_num').children(".z_page_active")[0].innerText < 3) {
+                        $(this).siblings('.z_num').children('li:first-child').next().next()[0].innerText = 3
+                        $(this).siblings('.z_num').children(".z_page_active").next().addClass('z_page_active').siblings().removeClass('z_page_active')
+                    } else {
+                        $(this).siblings('.z_num').children(".z_page_active").next().addClass('z_page_active').siblings().removeClass('z_page_active')
+                    }
+                }
+            }
         })
         $(".z_gonum button").click(function () {
             console.log($(this).siblings('input')[0].value)
+            if ($(this).siblings('input')[0].value < $(this).parent().siblings('.z_num').children('li:last-child')[0].innerText - 2) {
+                if ($(this).siblings('input')[0].value > 2) {
+                    $(this).parent().siblings('.z_num').children('li:first-child').next().next()[0].innerText = $(this).siblings('input')[0].value
+                    $(this).parent().siblings('.z_num').children('li:first-child').next().next().addClass('z_page_active').siblings().removeClass('z_page_active')
+                } else {
+                    if ($(this).siblings('input')[0].value == 1) {
+                        $(this).parent().siblings('.z_num').children('li:first-child').addClass('z_page_active').siblings().removeClass('z_page_active')
+                    } else {
+                        $(this).parent().siblings('.z_num').children('li:first-child').next().addClass('z_page_active').siblings().removeClass('z_page_active')
+                    }
+                }
+            } else {
+                if ($(this).siblings('input')[0].value == $(this).parent().siblings('.z_num').children('li:last-child')[0].innerText - 2) {
+                    $(this).parent().siblings('.z_num').children('li:last-child').prev().prev()[0].innerText = $(this).siblings('input')[0].value
+                    $(this).parent().siblings('.z_num').children('li:last-child').prev().prev().addClass('z_page_active').siblings().removeClass('z_page_active')
+                } else if ($(this).siblings('input')[0].value == $(this).parent().siblings('.z_num').children('li:last-child')[0].innerText - 1) {
+                    $(this).parent().siblings('.z_num').children('li:last-child').prev().addClass('z_page_active').siblings().removeClass('z_page_active')
+                } else {
+                    $(this).parent().siblings('.z_num').children('li:last-child').addClass('z_page_active').siblings().removeClass('z_page_active')
+                }
+            }
         })
         $(".z_page li").click(function () {
-            if(this.innerText=='...'){
+            if (this.innerText == '...') {
                 return false
-            }else {
+            } else {
                 $(this).siblings().removeClass('z_page_active')
                 $(this).addClass('z_page_active')
                 console.log(this.innerText)
@@ -40,10 +99,10 @@
         })
 
         //轮播图
-        var mySwiper = new Swiper ('.swiper-container', {
+        var mySwiper = new Swiper('.swiper-container', {
             // direction: 'vertical', // 垂直切换选项
             loop: true, // 循环模式选项
-            autoplay:true,
+            autoplay: true,
             // 如果需要分页器
             pagination: {
                 el: '.swiper-pagination',
