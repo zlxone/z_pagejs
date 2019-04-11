@@ -96,4 +96,9 @@ input::-webkit-inner-spin-button {
     /*-moz-appearance: textfield;*/
 /*}*/
 
+.disable {
+	pointer-events: none;
+}
+
+
 
