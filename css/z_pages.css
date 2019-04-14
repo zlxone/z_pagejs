@@ -1,5 +1,5 @@
 .z_container {
-    width: 600px;
+    width: 700px;
     margin: 0 auto;
     background-color: #e9e9e9;
     padding: 20px;
@@ -173,5 +173,78 @@
 #z_yzmbtn {
     cursor: pointer;
 }
+
+/*导航菜单*/
+.z_menu {
+    background: #4ebbf0;
+    width: 100%;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.z_menu > span {
+    width: 200px;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+}
+
+.z_menu > span > a {
+    font-size: 20px;
+    color: white;
+    width: 100%;
+    height: 100%;
+    display: block;
+    line-height: 60px;
+}
+
+.z_menu ul {
+    display: none;
+}
+
+.z_menu li {
+    background: lightsteelblue;
+    height: 60px;
+    line-height: 60px;
+    border-top: 1px solid floralwhite;
+}
+
+.z_menu li > a {
+    font-size: 20px;
+    color: white;
+    display: block;
+}
+
+.z_menu > span:hover {
+    background: lightsteelblue;
+}
+
+.z_menu > span:hover ul {
+    display: block;
+}
+
+/*tab按钮组*/
+.z_button_group span {
+    padding: 6px 10px;
+    font-size: 20px;
+    color: black;
+    display: inline-block;
+    margin-right: 20px;
+    background: lightblue;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.z_button_group .z_button_group_active {
+    background: blue;
+}
+
+
+
+
+
+
+
 
 
