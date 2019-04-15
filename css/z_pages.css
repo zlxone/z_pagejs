@@ -128,6 +128,7 @@
     max-height: 120px;
     overflow-y: scroll;
     background: white;
+    position: relative;
 }
 
 .z_select li {
