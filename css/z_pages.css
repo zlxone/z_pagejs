@@ -29,12 +29,28 @@
 
 .z_page .z_prev, .z_page .z_next {
     padding: 4px 8px;
-    background: #F8F8F9;
+    background-color: #F8F8F9;
     border: 1px solid #F8F8F9;
     border-radius: 4px;
     cursor: pointer;
     font-size: 12px;
     color: #666666;
+}
+
+.z_page .z_prev {
+    background-image: url("../images/zlpage.png");
+    background-size: 10px 10px;
+    background-position: left 8px center;
+    background-repeat: no-repeat;
+    padding-left: 22px;
+}
+
+.z_page .z_next {
+    background-image: url("../images/zrpage.png");
+    background-size: 10px 10px;
+    background-position: right 8px center;
+    background-repeat: no-repeat;
+    padding-right: 22px;
 }
 
 .z_page li {
@@ -177,7 +193,7 @@
 
 /*导航菜单*/
 .z_menu {
-    background: #4ebbf0;
+    background: #007CC5;
     width: 100%;
     height: 60px;
     margin: 0 auto;
@@ -192,7 +208,8 @@
 }
 
 .z_menu > span > a {
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: bold;
     color: white;
     width: 100%;
     height: 100%;
@@ -202,37 +219,43 @@
 
 .z_menu ul {
     display: none;
+    position: relative;
+    z-index: 100;
 }
 
 .z_menu li {
-    background: lightsteelblue;
+    background: #71A2E2;
     height: 60px;
     line-height: 60px;
     border-top: 1px solid floralwhite;
 }
 
 .z_menu li > a {
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: bold;
     color: white;
     display: block;
 }
 
 .z_menu > span:hover {
-    background: lightsteelblue;
+    background: #71A2E2;
 }
 
 .z_menu > span:hover ul {
     display: block;
 }
 
+.z_menu li:hover {
+    background: #007CC5;
+}
+
 /*tab按钮组*/
 .z_button_group span {
     padding: 6px 10px;
-    font-size: 20px;
+    font-size: 16px;
     color: black;
     display: inline-block;
     margin-right: 20px;
-    background: lightblue;
     vertical-align: top;
     cursor: pointer;
 }
