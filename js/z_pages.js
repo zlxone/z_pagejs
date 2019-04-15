@@ -172,6 +172,10 @@
             }
         }
 
-
+        // tab按钮组
+        $('.z_button_group span').click(function () {
+            $(this).siblings().removeClass("z_button_group_active");
+            $(this).addClass('z_button_group_active')
+        })
     }
 )()
