@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>js图片垂直滚动</title>
+</head>
+<style type="text/css">
+    #searchbox{ position:absolute;left:19px;top:270px;width:570px;height:40px;z-index:3;border:1px solid #CCCCCC;}
+    #IssueList {margin:0px 0px 12px 0px;padding:0;list-style: none;height:158px;width:210px;overflow:hidden;background-color:#336699;color:#FFFFFF;}
+    #IssueList li {line-height:58px;}
+</style>
+<body>
+<ul id="IssueList">
+    <li><img height="60" width="210" alt="1" src="adfile/image/scrollad1.gif" /></li>
+    <li><img height="60" width="210" alt="2" src="adfile/image/scrollad2.gif" /></li>
+    <li><img height="60" width="210" alt="3" src="adfile/image/scrollad3.gif" /></li>
+    <li><img height="60" width="210" alt="4" src="adfile/image/scrollad4.gif" /></li>
+    <li><img height="60" width="210" alt="5" src="adfile/image/scrollad5.gif" /></li>
+</ul>
+<script type="text/javascript">
+    (function(ul, delay, speed, lineHeight) {
+        var slideBox = (typeof ul == 'string')?document.getElementById(ul):ul;
+        var delay = delay||1000;
+        var speed=speed||15;
+        var lineHeight = lineHeight||60;
+        var tid = null, pause = false;
+        var start = function() {
+            tid=setInterval(slide, speed);
+        }
+        var slide = function() {
+            if (pause) return;
+            slideBox.scrollTop += 2;
+            if (slideBox.scrollTop % lineHeight == 0) {
+                clearInterval(tid);
+                slideBox.appendChild(slideBox.getElementsByTagName('li')[0]);
+                slideBox.scrollTop = 0;
+                setTimeout(start, delay);
+            }
+        }
+        slideBox.onmouseover=function(){pause=true;}
+        slideBox.onmouseout=function(){pause=false;}
+        setTimeout(start, 2000);
+    })
+    ('IssueList', 3000, 2, 58);//停留时间，相对速度（越小越快）,每次滚动多少，最好和Li的Line-height一致。
+</script>
+</body>
+</html>

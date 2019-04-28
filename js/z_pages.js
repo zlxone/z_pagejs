@@ -92,10 +92,15 @@
             let fr = new FileReader();
             fr.readAsDataURL(obj);
             fr.onload = function () {
-                html = '<img src="' + this.result + '">'
-                // $("#z_imgshow").append(html)
-                $("#z_imgshow").attr('src', this.result);
+                $(".z_upfile").val("")
+                html = '<img class="zimgs" src="' + this.result + '"><span class="zimgx">x</span>'
+                $("#z_imgshows").append(html)
+                // $("#z_imgshow").attr('src', this.result);
             };
+        })
+        $(document).on("click", ".zimgx", function () {
+            $(this).prev()[0].remove()
+            $(this)[0].remove()
         })
 
         //轮播图
@@ -198,6 +203,128 @@
             }
         })
 
+        //合作单位滚动
+        // $(document).ready(function () {
+        //     ScrollText_vertic($('#scrollLocalP'), 400, 115, $("#scrollLocalSub"), 'top', 1, 50, 'localPTemp');//垂直循环滚动
+        // });
+
+        //循环调用的方法
+        function ScrollAutoPlay_vertic(contID1, contID2, scrolldir, ShowHeight, textheight, steper) {
+            var panel_1 = $('#' + contID1);
+            var panel_2 = $('#' + contID2);
+            currPos_1 = parseInt(panel_1.css('top'));  //第一个容器距离顶部的高度
+            currPos_2 = parseInt(panel_2.css('top'));  //第二个容器距离顶部的高度
+            //根据第二个容器的位置重置第一个容器的位置，当第二个容器完全显示后重置
+            if (parseInt(currPos_2) == (ShowHeight - textheight)) {
+                panel_1.css('top', ShowHeight);
+            }
+            else {
+                panel_1.css('top', currPos_1 - steper);
+            }
+            if (parseInt(currPos_1) == (ShowHeight - textheight)) {
+                panel_2.css('top', ShowHeight);
+            }
+            else {
+                panel_2.css('top', currPos_2 - steper);
+            }
+        }
+
+//--------------------------------------------左右滚动效果----------------------------------------------
+        /*
+        AppendToObj：        显示位置（目标对象）
+        ShowWidth：        显示宽度
+        ShowHeight：        显示高度
+        ShowText：        显示信息
+        ScrollDirection：    滚动方向（值：top、right）
+        Steper：        每次移动的间距（单位：px；数值越小，滚动越流畅，建议设置为1px）
+        Interval:        每次执行运动的时间间隔（单位：毫秒；数值越小，运动越快）
+        templeName:       生成的容器主id
+        */
+        function ScrollText_vertic(AppendToObj, ShowWidth, ShowHeight, ShowText, ScrollDirection, Steper, Interval, templeName) {
+            var textHeight, PosInit, PosSteper;
+            var ScrollTime_virtic;
+            if (ShowText.height() < ShowHeight) {            //判断是否需要滚动，如果内容高度小于容器高度就不滚动
+                return;
+            }
+            with (AppendToObj) {
+                html('');
+                css('overflow', 'hidden');
+                css('width', ShowWidth + 'px');
+                css('line-height', ShowHeight + 'px');
+                css('height', ShowHeight);
+            }
+            if (ScrollDirection == 'top') {
+                PosInit = ShowHeight;
+                PosSteper = Steper;
+            }
+            else {
+                PosSteper = 0 - Steper;
+            }
+            if (Steper < 1 || Steper > ShowHeight) {
+                Steper = 1
+            }//每次移动间距超出限制(单位:px)
+            if (Interval < 1) {
+                Interval = 10
+            }//每次移动的时间间隔（单位：毫秒）
+            var Container1 = $('<div></div>');   //第一个用于展示的容器
+            var ContainerID1 = templeName;  //第一个用于展示的容器id
+            var i = 0;
+            while ($('#' + ContainerID1).length > 0) {
+                ContainerID1 = ContainerID1 + '_' + i;
+                i++;
+            }
+            with (Container1) {
+                attr('id', ContainerID1);
+                //css('float', 'left');
+                css('cursor', 'default');
+                css('position', 'absolute');
+                appendTo(AppendToObj);
+                html(ShowText.html());
+                //鼠标进入后停止滚动
+                mouseover(function () {
+                    clearInterval(ScrollTime_virtic);
+                });
+                mouseout(function () {
+                    ScrollTime_virtic = setInterval("ScrollAutoPlay_vertic('" + ContainerID1 + "','" + ContainerID2 + "','" + ScrollDirection + "'," + ShowHeight + ',' + textHeight + "," + PosSteper + ")", Interval);
+                });
+            }
+            textHeight = Container1.height();
+            if (isNaN(PosInit)) {
+                PosInit = 0 - textHeight;
+            }
+            ;
+            Container1.css('top', PosInit);
+            var Container2 = $('<div></div>');    //第二个用于展示的容器
+            var ContainerID2 = templeName;   //第二个用于展示的容器id
+            var i = 0;
+            while ($('#' + ContainerID2).length > 0) {
+                ContainerID2 = ContainerID2 + '_' + i;
+                i++;
+            }
+            with (Container2) {
+                attr('id', ContainerID2);
+                //css('float', 'left');
+                css('cursor', 'default');
+                css('position', 'absolute');
+                appendTo(AppendToObj);
+                html(ShowText.html());
+                mouseover(function () {
+                    clearInterval(ScrollTime_virtic);
+                });
+                mouseout(function () {
+                    ScrollTime_virtic = setInterval("ScrollAutoPlay_vertic('" + ContainerID1 + "','" + ContainerID2 + "','" + ScrollDirection + "'," + ShowHeight + ',' + textHeight + "," + PosSteper + ")", Interval);
+                });
+            }
+            textHeight = Container2.height();
+            if (isNaN(PosInit)) {
+                PosInit = textHeight + 100;
+            }
+            ;
+            Container2.css('top', PosInit + textHeight);
+            ScrollTime_virtic = setInterval("ScrollAutoPlay_vertic('" + ContainerID1 + "','" + ContainerID2 + "','" + ScrollDirection + "'," + ShowHeight + ',' + textHeight + "," + PosSteper + ")", Interval);
+        }
+
+
     }
 )()
 
@@ -221,3 +348,4 @@ function setHome(obj, vrl) {
         }
     }
 }
+

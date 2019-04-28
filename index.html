@@ -109,6 +109,7 @@
 
     <!--//上传图片并预览-->
     <div>
+        <div id="z_imgshows"></div>
         <img id="z_imgshow" src="">
         <input type="file" class="z_upfile">
         <span class="z_upimgbtn">上传图片</span>
@@ -161,11 +162,60 @@
         </div>
     </div>
 
+    <!--合作单位滚动-->
+    <div id="scrollLocalP" style="height: 75px; overflow: hidden; position: relative;">
+        <div id="scrollLocalSub" style="">
+            <div id="localDiv" style="color:#666;background: yellow">
+                <table>
+                    <tr>
+                        <td>
+                            <div style="height: 26px; width: 180px; text-align: center; line-height: 26px;">
+                                <div>
+                                    <span id="rptLocal_lblName_0" class="bigtxt">安徽省</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="height: 26px; width: 180px; text-align: center; line-height: 26px;">
+                                <div>
+                                    <span id="rptLocal_lblName_2" class="bigtxt">北京市</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="height: 26px; width: 180px; text-align: center; line-height: 26px;">
+                                <div>
+                                    <span id="rptLocal_lblName_4" class="bigtxt">重庆市</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="height: 26px; width: 180px; text-align: center; line-height: 26px;">
+                                <div>
+                                    <span id="rptLocal_lblName_6" class="bigtxt">福建省</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 
 </div>
-<script src="js/jquery-3.1.1.min.js"></script>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
 <script src="js/swiper.min.js"></script>
 <script src="js/z_pages.js"></script>
-
+<script>
+    $(document).ready(function () {
+        ScrollText_vertic($('#scrollLocalP'), 400, 115, $("#scrollLocalSub"), 'top', 1, 50, 'localPTemp');//垂直循环滚动
+    });
+</script>
 </body>
 </html>
