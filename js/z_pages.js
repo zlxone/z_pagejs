@@ -142,6 +142,33 @@
             }
         }
 
+        //图片垂直滑动
+        $('.z_slide1,.z_slide2').hover(function () {
+            $(this).css('-webkit-animation-play-state','paused').siblings().css('-webkit-animation-play-state','paused')
+            $(this).css('-o-animation-play-state','paused').siblings().css('-o-animation-play-state','paused')
+            $(this).css('animation-play-state','paused').siblings().css('animation-play-state','paused')
+        },function () {
+            $(this).css('-webkit-animation-play-state','running').siblings().css('-webkit-animation-play-state','running')
+            $(this).css('-o-animation-play-state','running').siblings().css('-o-animation-play-state','running')
+            $(this).css('animation-play-state','running').siblings().css('animation-play-state','running')
+        })
+        var zslideheight = $('.z_slide_group')[0].clientHeight
+        var zimgsheight = $('.z_slide1')[0].clientHeight
+        var tt = document.styleSheets[0];
+        tt.deleteRule(6);//清除之前写入的动画样式g
+        if (zimgsheight < zslideheight) {
+            $('.z_slide1').css('animation', 'mymove1 20s linear infinite normal')
+            $('.z_slide2').css('animation', 'mymove2 20s linear infinite normal')
+            tt.insertRule("@keyframes mymove1{from {top: " + 0 + "px;}to {top: -" + zslideheight + "px;}}", 6);
+            tt.insertRule("@keyframes mymove2{from {top: " + zslideheight + "px;}to {top: " + 0 + "px;}}", 6);
+        } else {
+            $('.z_slide1').css('animation', 'mymove1 40s linear infinite normal')
+            $('.z_slide2').css('animation', 'mymove2 40s linear infinite normal')
+            tt.insertRule("@keyframes mymove1{from {top: " + 0 + "px;}to {top: -" + zimgsheight + "px;}}", 6);
+            tt.insertRule("@keyframes mymove2{from {top: " + zimgsheight + "px;}to {top: " + 0 + "px;}}", 6);
+        }
+        // console.log($('.z_slide1')[0].clientHeight)
+
         //选择框
         $(".z_select span").click(function () {
             $(this).next().toggle(10)
